@@ -10,10 +10,3 @@ import {RouterLink} from "vue-router"
         Home
     </RouterLink>
 </template>
-
-<style scoped>
-
-
-
-
-</style>
