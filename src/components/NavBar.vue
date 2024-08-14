@@ -40,7 +40,7 @@ const logOut = () => { }
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* padding: 5px 10px; */
+    padding: 5px 10px; 
     background-color: #982B1C;
     box-shadow: 0px 5px 5px rgb(206, 201, 201);
 }
@@ -66,7 +66,7 @@ const logOut = () => { }
 
 .logo-img {
     width: 2.5rem;
-    margin:0 5px;
+    /* margin:0 5px; */
 }
 
 .logo-text {

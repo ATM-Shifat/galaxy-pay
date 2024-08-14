@@ -3,5 +3,7 @@
 </script>
 
 <template>
-    Hero
+    <div>
+        
+    </div>
 </template>
