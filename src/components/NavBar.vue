@@ -12,7 +12,7 @@ const logOut = () => { }
 <template>
     <nav class="navbar">
         <span class="items">
-            <RouterLink class="nav-item logo" to="/">
+            <RouterLink class="logo" to="/">
                 <img class="logo-img" src="/wallet.ico" alt="Logo">
                 <span class="logo-text">GalaxyPay</span>
             </RouterLink>
@@ -62,6 +62,9 @@ const logOut = () => { }
     align-items: center;
     margin-right:10px;
     text-decoration: none;
+    padding: 4px 10px;
+    color: #ffffff;
+    font-weight: 500;
 }
 
 .logo-img {

@@ -1,20 +1,38 @@
 <script setup>
 
 import { reactive, computed} from 'vue'
+import {useRouter} from 'vue-router'
+import {useToast} from 'vue-toastification'
+
+
+const toast = useToast()
+const router = useRouter()
 
 const form = reactive({
 	
-	email: "example@mail.com",
+	email: "",
     password: "",
 })
 
+
 const submit = () =>{
+
+    if(!form.email)
+        return toast.error("Email can not be empty!")
+    if(!form.password)
+        return toast.error("Password can not be empty!")
+        
+
     try{
-        console.log("hello")
+        
+        router.push("/") 
+        toast.success("Successfully Logged in!") 
+        
     }catch(error){
-        console.error("Failed to signup!",error)
+        toast.error("Failed to Log in!")
     }
 }
+
 
 </script>
 
@@ -42,6 +60,10 @@ const submit = () =>{
                     <p v-if="serverError" class="error-message">{{ serverError }}</p>
                     <p v-if="successMessage" class="success-message">{{ successMessage }}</p>
                     <p v-if="loading" class="loading-message">Loading...</p> -->
+                </div>
+                <div class="redirect">
+                    Do not have an account? 
+                    <RouterLink class="link" to="/accounts/signup">Sign up</RouterLink>
                 </div>
                 
             </form>
@@ -104,7 +126,7 @@ const submit = () =>{
     font-size: 1rem;
     transition: border-color 0.3s ease, color 0.3s ease;
     outline: none;
-    color: var(--hover-color);
+    color: gray;
 }
 .input-container input:hover{
     box-shadow: 0px 1px 5px #999898;
@@ -138,4 +160,21 @@ const submit = () =>{
   transition:  0.3s ease;
 }
 
+.redirect{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 10px;
+  color: gray;
+}
+.link{
+  color: var(--primary-color);
+  text-decoration: none;
+  margin-left: 5px; ;
+}
+
+.link:hover{
+  text-shadow: 0px 1px 2px gray;
+  transition: color 0.3s ease;
+}
 </style>

@@ -5,6 +5,7 @@ import { useRouter, useRoute } from 'vue-router';
 import { useStore } from '@/store/store';
 
 
+
 defineProps({
     title:{
         type: String,
@@ -31,7 +32,7 @@ defineProps({
                     {{subtitle}}
                 </p>
             </div>
-            <RouterLink class="button" to="/accoutns/signup">
+            <RouterLink class="button" to="/accounts/signup">
                 Sign Up 
             </RouterLink>
         </div>

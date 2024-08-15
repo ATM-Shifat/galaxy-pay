@@ -1,21 +1,52 @@
 <script setup>
 
 import { reactive, computed} from 'vue'
+import { useToast } from 'vue-toastification';
+import { useRouter } from 'vue-router';
+
+import { validEmail, validPassword } from '@/utilities/utilities';
+
+const toast = useToast()
+const router = useRouter()
 
 const form = reactive({
 	
-	name: "John Doe",
-	email: "example@mail.com",
-	phone: "+880",
+	name: "",
+	email: "",
+	phone: "",
     password: "",
     confirmPassword: "",
 })
 
+
 const submit = () =>{
+
+    if(!form.name)
+        return toast.error("Name can not be empty!")
+    if(!form.email)
+        return toast.error("Email can not be empty!")
+    if(!form.phone)
+        return toast.error("Phone can not be empty!")
+    if(!form.password)
+        return toast.error("Password can not be empty!")
+    if(!form.confirmPassword)
+        return toast.error("Confirm Password can not be empty!")
+
+    if(!validEmail(form.email))
+        return toast.error("Email is not Valid!")
+    if(!validPassword(form.password)){
+        return toast.error("Password must be at least 6 characters, at least one letter and a digit!")
+    }
+    if(form.password !== form.confirmPassword)
+        return toast.error("Passwords should match!")
+        
+    
     try{
-        console.log("hello")
+
+        router.push("/accounts/login")
+        toast.success("Successfully Signed up!")  
     }catch(error){
-        console.error("Failed to signup!",error)
+        toast.error("Failed to Signed up!")
     }
 }
 
@@ -32,7 +63,7 @@ const submit = () =>{
                 </div>
                 <div class="input-container-div">
                     <label for="email">Email:</label>
-                    <input name="email" type="email" v-model="form.email">
+                    <input name="email" type="text" v-model="form.email">
                 </div>
                 <div class="input-container-div">
                     <label for="phone">Phone:</label>
@@ -57,6 +88,11 @@ const submit = () =>{
                     <p v-if="serverError" class="error-message">{{ serverError }}</p>
                     <p v-if="successMessage" class="success-message">{{ successMessage }}</p>
                     <p v-if="loading" class="loading-message">Loading...</p> -->
+                </div>
+
+                <div class="redirect">
+                    Already have an account? 
+                    <RouterLink class="link" to="/accounts/login">Login</RouterLink>
                 </div>
                 
             </form>
@@ -119,7 +155,7 @@ const submit = () =>{
     font-size: 1rem;
     transition: border-color 0.3s ease, color 0.3s ease;
     outline: none;
-    color: var(--hover-color);
+    color: gray;
 }
 .input-container input:hover{
     box-shadow: 0px 1px 5px #999898;
@@ -147,10 +183,31 @@ const submit = () =>{
 
 .button:hover{
   background-color: var(--secondary-color);
-  /* border:1px solid var(--secondary-color); */
   color: #fff;
   box-shadow: 0px 2px 10px gray;
   transition:  0.3s ease;
 }
 
+.redirect{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 10px;
+  color: gray;
+}
+.link{
+  color: var(--primary-color);
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.link:hover{
+  text-shadow: 0px 1px 2px gray;
+  transition: color 0.3s ease;
+}
+
+.error-text{
+    color: red;
+    font-size: 0.8rem;
+}
 </style>
