@@ -13,7 +13,7 @@ const logOut = () => { }
     <nav class="navbar">
         <span class="items">
             <RouterLink class="nav-item logo" to="/">
-                <img class="logo-img" src="/public/wallet.ico" alt="Logo">
+                <img class="logo-img" src="/wallet.ico" alt="Logo">
                 <span class="logo-text">GalaxyPay</span>
             </RouterLink>
 
@@ -41,7 +41,7 @@ const logOut = () => { }
     justify-content: space-between;
     align-items: center;
     padding: 5px 10px; 
-    background-color: #982B1C;
+    background-color: var(--primary-color);
     box-shadow: 0px 5px 5px rgb(206, 201, 201);
 }
 
@@ -52,7 +52,7 @@ const logOut = () => { }
 }
 
 .nav-item:hover {
-    background-color: #ac5345;
+    background-color: var(--hover-color);
     border-radius: 5px;
     transition:  0.3s ease; 
 }
@@ -78,7 +78,5 @@ const logOut = () => { }
     display:flex;
     align-items: center;
 }
-
-
 
 </style>

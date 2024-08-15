@@ -1,4 +1,11 @@
 
+:root{
+
+  --primary-color: #982B1C;
+  --secondary-color: #a03b2d;
+  --hover-color: #ac5345;
+}
+
 *{
   margin:0px;
   padding: 0px;

@@ -48,9 +48,9 @@ defineProps({
     display: flex;
     justify-content: start;
     /* align-items: center; */
-    height: 25rem;
+    height: 21rem;
     padding: 3rem 1.3rem;
-    background-color: #a03b2d;
+    background-color: var(--secondary-color);
     background-position: center;
     background-size: cover;
 }
@@ -77,7 +77,7 @@ img{
 }
 
 .strokeme {
-  color: #a03b2d;
+  color: var(--secondary-color);
   text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
   
 }
@@ -86,7 +86,7 @@ img{
     margin-left: -1rem;
     font-size: 3.5rem;
     font-weight: 700;
-    color: #a03b2d;
+    color: var(--secondary-color);
     text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
 }
 
@@ -102,20 +102,22 @@ img{
     color: #fff;
 }
 
+
 .button{
-    background-color: white;
-    color: #a03b2d;
-    padding: .5rem 1rem;
-    margin-top: 200px;
-    border-radius: 10px;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
+  background-color: #ffffff;
+  color: var(--secondary-color);
+  padding: .5rem 1rem;
+  margin-top: 200px;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
 }
 
 .button:hover{
-    background-color: #a03b2d;
-    border:1px white solid;
-    color: white;
+  background-color: var(--secondary-color);
+  border:1px white solid;
+  color: white;
+  transition:  0.3s ease;
 }
 
 </style>
