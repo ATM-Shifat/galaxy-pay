@@ -3,11 +3,13 @@
 import { reactive, computed} from 'vue'
 import { useToast } from 'vue-toastification';
 import { useRouter } from 'vue-router';
+import { galaxyStore } from "@/store";
 
 import { validEmail, validPassword } from '@/utilities/utilities';
 
 const toast = useToast()
 const router = useRouter()
+const userStore = galaxyStore()
 
 const form = reactive({
 	
@@ -19,7 +21,7 @@ const form = reactive({
 })
 
 
-const submit = () =>{
+const submit = async() =>{
 
     if(!form.name)
         return toast.error("Name can not be empty!")
@@ -43,10 +45,34 @@ const submit = () =>{
     
     try{
 
-        router.push("/accounts/login")
-        toast.success("Successfully Signed up!")  
+        const response = await userStore.signup({
+            name: form.name,
+            email: form.email,
+            phone: form.phone,
+            password: form.password,
+        })
+        
+        if(response.status === 201){
+
+            form.name = ""
+            form.email = ""
+            form.phone = ""
+            form.password = ""
+            form.confirmPassword = ""
+
+            router.push("/accounts/login")
+            toast.success(response.data.message) 
+
+        }
+
     }catch(error){
-        toast.error("Failed to Signed up!")
+        console.error("Failed to create user.",error)
+
+        if(error.response && error.response.status === 403)
+            toast.error(error.response.data.error)
+        else{
+            toast.error("An error occurred")
+        }
     }
 }
 

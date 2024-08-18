@@ -3,10 +3,12 @@
 import { reactive, computed} from 'vue'
 import {useRouter} from 'vue-router'
 import {useToast} from 'vue-toastification'
+import { galaxyStore } from '@/store';
 
 
 const toast = useToast()
 const router = useRouter()
+const userStore = galaxyStore()
 
 const form = reactive({
 	
@@ -15,7 +17,7 @@ const form = reactive({
 })
 
 
-const submit = () =>{
+const submit = async () =>{
 
     if(!form.email)
         return toast.error("Email can not be empty!")
@@ -24,12 +26,23 @@ const submit = () =>{
         
 
     try{
-        
-        router.push("/") 
-        toast.success("Successfully Logged in!") 
+        const response = await userStore.login({
+            email: form.email,
+            password: form.password,
+        })
+
+        if(response.status === 200){
+            router.push("/") 
+            toast.success(response.data.message) 
+        }
         
     }catch(error){
-        toast.error("Failed to Log in!")
+        console.error("Failed to Log in.",error)
+
+        if(error.response && error.response.status === 401)
+            toast.error(error.response.data.error)
+        else
+            toast.error("An error occured!")
     }
 }
 

@@ -1,13 +1,15 @@
 <script setup>
 
+import {computed } from 'vue'
+
 import Hero from "@/components/Hero.vue"
-import { useStore } from "@/store/store"
+import { galaxyStore} from "@/store"
 import Transaction from "@/components/Transaction.vue";
 
-const store = useStore()
+const userStore = galaxyStore()
 
 
-const userLoggedIn = store.isAuthenticated
+const userLoggedIn = computed(() => userStore.isAuthenticated)
 
 
 </script>

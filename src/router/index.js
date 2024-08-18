@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { useStore } from '@/store/store'
+import { galaxyStore} from '@/store'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

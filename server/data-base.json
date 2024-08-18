@@ -1,0 +1,38 @@
+{
+  "users": [
+    {
+      "transactions": [
+        {
+          "id": "",
+          "to": "",
+          "amount": "",
+          "time": ""
+        }
+      ]
+    },
+    {
+      "id": "66c1ff47",
+      "email": "mesiceribo@mailinator.com",
+      "hashedPassword": "b2fe8b46929bfa4c65fee9d5d43a2423799b18e360782e9abc27bd420877243e",
+      "name": "Dora Graves",
+      "account": "250916521935",
+      "balance": 0,
+      "phone": "+1 (161) 734-9781",
+      "transactions": []
+    },
+    {
+      "id": "66c1fff5",
+      "email": "lypivum@mailinator.com",
+      "hashedPassword": "b2fe8b46929bfa4c65fee9d5d43a2423799b18e360782e9abc27bd420877243e",
+      "name": "Simone Roberson",
+      "account": "497345420061",
+      "balance": 0,
+      "phone": "+1 (159) 322-8172",
+      "transactions": []
+    }
+  ],
+  "Admin": {
+    "userId": "",
+    "password": "Pa$$w0rd!"
+  }
+}

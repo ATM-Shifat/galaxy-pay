@@ -1,12 +1,20 @@
 <script setup>
-import { RouterLink } from "vue-router"
-import { useStore } from "@/store/store"
+import { RouterLink, useRouter } from "vue-router"
+import { galaxyStore } from "@/store"
+import {computed } from 'vue'
+import { useToast } from "vue-toastification";
 
-const store = useStore()
+const userStore = galaxyStore()
+const router = useRouter()
+const toast = useToast()
 
-const userLoggedIn = store.isAuthenticated
+const userLoggedIn = computed(() => userStore.isAuthenticated)
 
-const logOut = () => { }
+const logOut = () => {
+    userStore.logOut()
+    router.push('/')
+    toast.success("Logged out successfully")
+ }
 </script>
 
 <template>

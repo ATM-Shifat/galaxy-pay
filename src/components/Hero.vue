@@ -2,7 +2,7 @@
 
 import { defineProps, computed, reactive } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-import { useStore } from '@/store/store';
+import { galaxyStore } from '@/store';
 
 
 
