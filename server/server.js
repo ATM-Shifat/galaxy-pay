@@ -55,7 +55,7 @@ server.post('/sign-up', (req, res) =>{
         else{
             const id = generateId()
 
-            const password = hashPassword(password)
+            const password = hashPassword(sentPassword)
 
             const account = generateAccount({
                 email: email,
@@ -67,16 +67,18 @@ server.post('/sign-up', (req, res) =>{
             const transactions = []
             const balance = "500"
 
-            db.get("users").push({
-                id, 
-                email, 
-                password, 
-                name, 
-                account, 
-                balance, 
-                phone,
-                transactions
-            }).write()
+            db.get("users")
+            .push({
+                id: id, 
+                email: email,  
+                password: password, 
+                name: name, 
+                account: account, 
+                balance: balance, 
+                phone: phone,
+                transactions: transactions
+            })
+            .write()
 
             return res.status(201).json({message: 'User created successfully'})
 
@@ -108,7 +110,6 @@ server.post('/log-in', (req, res) => {
             res.status(200).json({
                 token: token,
                 account: user.account,
-                transactions: user.transactions,
                 message: "Logged in successfully"
             })
         }else{
@@ -154,11 +155,38 @@ server.post('/transfer-funds', (req, res) => {
         if(Number(fromUser.balance) < Number(amount))
             return res.status(403).json({error: "Insufficient balance"})
 
-        const fromUserNewBalance = String(Number(fromUser.balance) - Number(amount))
-        const toUserNewBalance = String(Number(toUser.balance) + Number(amount))
+        const timeStamp = new Date().toISOString()
 
-        db.get('users').find({account: from}).assign({balance: fromUserNewBalance}).write()
-        db.get('users').find({account: to}).assign({balance: toUserNewBalance}).write()
+        const transactionFrom = {
+            id: generateId(),
+            amount: String(amount),
+            from: fromUser.account,
+            to: toUser.account,
+            timestamp: timeStamp
+        }
+
+        const transactionTo = {
+            id: generateId(),
+            amount: String(amount),
+            from: fromUser.account,
+            to: toUser.account,
+            timestamp: timeStamp
+        }
+
+        db.get('users')
+        .find({account: from})
+        .assign({balance: String(Number(fromUser.balance) - Number(amount))})
+        .get("transactions")
+        .unshift(transactionFrom)
+        .write()
+
+        db.get('users')
+        .find({account: to})
+        .assign({balance: String(Number(toUser.balance) + Number(amount))})
+        .get("transactions")
+        .unshift(transactionTo)
+        .write()
+        
 
         res.status(200).json({message: "Fund transfer complete"})
 

@@ -14,5 +14,5 @@ const totalTransactions = computed(() =>  userStore.stateTransactions)
 
 <template>
     <p>Balance: 0$</p>
-    Transactions: {{  totalTransactions.length }}
+    Transactions: {{   }}
 </template>

@@ -1,84 +1,60 @@
 {
   "users": [
     {
+      "id": "66c335d8",
+      "email": "mopa@mailinator.com",
+      "password": "b2fe8b46929bfa4c65fee9d5d43a2423799b18e360782e9abc27bd420877243e",
+      "name": "Ashton Holland",
+      "account": "902465996301",
+      "balance": "500",
+      "phone": "+1 (869) 378-9165",
+      "transactions": []
+    },
+    {
+      "id": "66c335e6",
+      "email": "tuvaku@mailinator.com",
+      "password": "b2fe8b46929bfa4c65fee9d5d43a2423799b18e360782e9abc27bd420877243e",
+      "name": "Lani Booth",
+      "account": "70464206645",
+      "balance": "500",
+      "phone": "+1 (517) 373-4281",
+      "transactions": []
+    },
+    {
+      "id": "66c335fb",
+      "email": "bazykajag@mailinator.com",
+      "password": "b2fe8b46929bfa4c65fee9d5d43a2423799b18e360782e9abc27bd420877243e",
+      "name": "Kaitlin Reeves",
+      "account": "713622142714",
+      "balance": "520",
+      "phone": "+1 (379) 138-1803",
       "transactions": [
         {
-          "id": "",
-          "to": "",
-          "amount": "",
-          "time": ""
+          "id": "66c337da",
+          "amount": "20",
+          "from": "155482922825",
+          "to": "713622142714",
+          "timestamp": "2024-08-19T12:17:29.961Z"
         }
       ]
     },
     {
-      "id": "66c1ff47",
-      "email": "mesiceribo@mailinator.com",
+      "id": "66c33606",
+      "email": "cehyso@mailinator.com",
       "password": "b2fe8b46929bfa4c65fee9d5d43a2423799b18e360782e9abc27bd420877243e",
-      "name": "Dora Graves",
-      "account": "250916521935",
-      "balance": "500",
-      "phone": "+1 (161) 734-9781",
-      "transactions": []
-    },
-    {
-      "id": "66c1fff5",
-      "email": "lypivum@mailinator.com",
-      "password": "b2fe8b46929bfa4c65fee9d5d43a2423799b18e360782e9abc27bd420877243e",
-      "name": "Simone Roberson",
-      "account": "497345420061",
-      "balance": "500",
-      "phone": "+1 (159) 322-8172",
-      "transactions": []
-    },
-    {
-      "id": "66c21b6f",
-      "email": "shifatatm@gmail.com",
-      "password": "12ffce5bdd3ed52ffdb99664671560ce7d0e1df84b8f202829158672524189d5",
-      "name": "Abu Taher Md. Shifat",
-      "account": "929228610300",
-      "balance": "500",
-      "phone": "01276789032",
-      "transactions": []
-    },
-    {
-      "id": "66c2d13a",
-      "email": "xybynevuze@mailinator.com",
-      "password": "b2fe8b46929bfa4c65fee9d5d43a2423799b18e360782e9abc27bd420877243e",
-      "name": "Anthony Hensley",
-      "account": "25019776701",
-      "balance": "500",
-      "phone": "+1 (713) 576-6978",
-      "transactions": []
-    },
-    {
-      "id": "66c2d14c",
-      "email": "fikytesyt@mailinator.com",
-      "password": "b2fe8b46929bfa4c65fee9d5d43a2423799b18e360782e9abc27bd420877243e",
-      "name": "Perry Mejia",
-      "account": "1075108688079",
-      "balance": "360",
-      "phone": "+1 (456) 702-3087",
-      "transactions": []
-    },
-    {
-      "id": "66c2d4ea",
-      "email": "pyxe@mailinator.com",
-      "password": "b2fe8b46929bfa4c65fee9d5d43a2423799b18e360782e9abc27bd420877243e",
-      "name": "Damon Hale",
-      "account": "1016391685344",
-      "balance": "500",
-      "phone": "+1 (746) 216-2296",
-      "transactions": []
-    },
-    {
-      "id": "66c2e1ce",
-      "email": "zevivir@mailinator.com",
-      "password": "b2fe8b46929bfa4c65fee9d5d43a2423799b18e360782e9abc27bd420877243e",
-      "name": "Alana Kirk",
-      "account": "186714225690",
-      "balance": "640",
-      "phone": "+1 (805) 735-7166",
-      "transactions": []
+      "name": "Pearl Myers",
+      "account": "155482922825",
+      "balance": "480",
+      "phone": "+1 (156) 135-5281",
+      "transactions": [
+        {
+          "id": "66c337da",
+          "amount": "20",
+          "from": "155482922825",
+          "to": "713622142714",
+          "timestamp": "2024-08-19T12:17:29.961Z"
+        }
+      ]
     }
   ],
   "Admin": {
