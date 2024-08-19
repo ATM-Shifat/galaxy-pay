@@ -1,11 +1,12 @@
 <script setup>
-import { RouterLink, useRouter } from "vue-router"
+import { RouterLink, useRouter, useRoute} from "vue-router"
 import { galaxyStore } from "@/store"
 import {computed } from 'vue'
 import { useToast } from "vue-toastification";
 
 const userStore = galaxyStore()
 const router = useRouter()
+const route = useRoute()
 const toast = useToast()
 
 const userLoggedIn = computed(() => userStore.isAuthenticated)
@@ -15,6 +16,11 @@ const logOut = () => {
     router.push('/')
     toast.success("Logged out successfully")
  }
+
+const isActive = (path) => {
+    return route.path === path
+}
+
 </script>
 
 <template>
@@ -25,18 +31,18 @@ const logOut = () => {
                 <span class="logo-text">GalaxyPay</span>
             </RouterLink>
 
-            <RouterLink class="nav-item" to="/">Home</RouterLink>
-            <RouterLink class="nav-item" to="/transfer">Transfer</RouterLink>
+            <RouterLink class="nav-item" :class="{active : isActive('/')}" to="/">Home</RouterLink>
+            <RouterLink class="nav-item" :class="{active : isActive('/accounts/transfer')}" to="/accounts/transfer">Transfer</RouterLink>
         </span>
 
         <span class="items">
             <span v-if="userLoggedIn">
-                <RouterLink class="nav-item" to="/accounts/profile">Profile</RouterLink>
+                <RouterLink class="nav-item" :class="{active : isActive('/accounts/profile')}" to="/accounts/profile">Profile</RouterLink>
                 <RouterLink class="nav-item" to="/" @click="logOut">Logout</RouterLink>
             </span>
             <span v-else>
-                <RouterLink class="nav-item" to="/accounts/signup">Signup</RouterLink>
-                <RouterLink class="nav-item" to="/accounts/login">Login</RouterLink>
+                <RouterLink class="nav-item" :class="{active : isActive('/accounts/signup')}" to="/accounts/signup">Signup</RouterLink>
+                <RouterLink class="nav-item" :class="{active : isActive('/accounts/login')}" to="/accounts/login">Login</RouterLink>
             </span>
         </span>
     </nav>
@@ -63,6 +69,14 @@ const logOut = () => {
     background-color: var(--hover-color);
     border-radius: 5px;
     transition:  0.3s ease; 
+}
+
+.nav-item.active{
+    background-color: var(--hover-color);
+    border-bottom: 1px solid #fff;
+    border-radius: 5px;
+    transition:  0.3s ease; 
+
 }
 
 .logo {

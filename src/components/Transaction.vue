@@ -8,12 +8,11 @@ const userStore = galaxyStore()
 
 
 
-const totalTransactions = computed(() => {
-  return userStore.stateTransactions;
-})
+const totalTransactions = computed(() =>  userStore.stateTransactions)
 
 </script>
 
 <template>
-    Transactions: {{  totalTransactions }}
+    <p>Balance: 0$</p>
+    Transactions: {{  totalTransactions.length }}
 </template>

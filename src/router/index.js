@@ -20,11 +20,29 @@ const router = createRouter({
       component: () => import('@/views/LoginView.vue')
     },
     {
+      path: '/accounts/transfer',
+      name: 'transfer',
+      component: () => import('@/views/TransferView.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
       path: "/:catchAll(.*)",
       name:"notFound",
       component: () => import('@/views/NotFoundView.vue')
     }
   ]
+})
+
+
+router.beforeEach((to, from, next) => {
+  const userStore = galaxyStore()
+
+  if(to.meta.requiresAuth && !userStore.isAuthenticated){
+    next('/accounts/login')
+    return 
+  }else
+    next()
+
 })
 
 export default router

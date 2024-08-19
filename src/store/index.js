@@ -5,13 +5,13 @@ import { jwtDecode } from 'jwt-decode'
 
 export const galaxyStore = defineStore('store', {
   state : () => ({
-    user: null,
+    userAccount: null,
     token: null,
     transactions: null,
     role: null
   }),
   getters: {
-    isAuthenticated: (state) => !!state.user,
+    isAuthenticated: (state) => !!state.userAccount,
     stateUser: (state) => state.user,
     isAdmin: (state) => state.role === 'admin',
     stateTransactions: (state) => state.transactions
@@ -19,7 +19,7 @@ export const galaxyStore = defineStore('store', {
   actions: {
     async signup(form){
 
-        const response = await axios.post('/api/signup', {
+        const response = await axios.post('/api/sign-up', {
           name: form.name,
           email: form.email,
           phone: form.phone,
@@ -31,14 +31,15 @@ export const galaxyStore = defineStore('store', {
     },
     async login(form){
 
-        const response = await axios.post('/api/login', {
+        const response = await axios.post('/api/log-in', {
           email: form.email,
           sentPassword: form.password
         })
 
         if(response.data.token && response.data.user){
           this.token = response.data.token
-          this.user = response.data.user
+          this.userAccount = response.data.account
+          this.transactions = response.data.transactions
 
           const decodedToken = jwtDecode(this.token)
           this.role = decodedToken.role
@@ -51,6 +52,26 @@ export const galaxyStore = defineStore('store', {
       this.token = null
       this.role = null
       this.transactions = null
+    },
+    async getBalance() {
+      const response = await axios.get('/api/get-balance', {
+        params: {account: this.userAccount},
+        headers: {"authorization": this.token}
+      })
+
+      return response
+    },
+    async transferFunds(form){
+      const response =  await axios.post('/api/transfer-funds',
+        { from: this.userAccount,
+          to: form.receiver,
+          amount: form.amount
+        },{
+        headers: {"authorization": this.token}
+      })
+
+
+      return response
     }
 
   },

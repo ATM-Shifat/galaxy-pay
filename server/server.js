@@ -18,7 +18,7 @@ server.use(bodyParser.urlencoded({extended: true}))
 
 
 server.use((req,res, next) => {
-    if(req.path !== '/login' && req.path !== '/signup'){
+    if(req.path !== '/log-in' && req.path !== '/sign-up'){
         try{
             const token = req.headers['authorization']
             if(token){
@@ -43,7 +43,7 @@ server.use((req,res, next) => {
     }
 })
 
-server.post('/signup', (req, res) =>{
+server.post('/sign-up', (req, res) =>{
     try{
         const  { name, email, phone, sentPassword} = req.body
 
@@ -65,7 +65,7 @@ server.post('/signup', (req, res) =>{
             })
 
             const transactions = []
-            const balance = "0"
+            const balance = "500"
 
             db.get("users").push({
                 id, 
@@ -87,7 +87,7 @@ server.post('/signup', (req, res) =>{
     }
 })
 
-server.post('/login', (req, res) => {
+server.post('/log-in', (req, res) => {
     try{
         const {email, sentPassword} = req.body
 
@@ -96,16 +96,19 @@ server.post('/login', (req, res) => {
         const db = router.db
         const user = db.get("users").find({email, password}).value()
 
+        
         if(user){
             const token = jwt.sign({
                 id: user.id,
+                account: user.account,
                 email: user.email,
                 role: 'user'
             },secrete)
 
             res.status(200).json({
-                token: token, 
-                user: user.id, 
+                token: token,
+                account: user.account,
+                transactions: user.transactions,
                 message: "Logged in successfully"
             })
         }else{
@@ -118,6 +121,53 @@ server.post('/login', (req, res) => {
     }
 })
 
+
+server.get('/get-balance', (req, res) => {
+    try{
+        const {account} = req.query
+        const db = router.db
+        const user = db.get("users").find({account}).value()
+
+        if(user)
+            res.status(200).json({balance: user.balance})
+        else
+            res.status(404).json({error: 'User not found!'})
+    }catch(error){
+        console.error('Error:', error)
+        res.status(500).json({error: 'Internal server error'})
+    }
+})
+
+server.post('/transfer-funds', (req, res) => {
+    try{
+        const {from , to, amount} = req.body
+
+        if(from === to)
+            return res.status(400).json({error: "Can not send funds to own account"})
+        const db = router.db
+
+        const fromUser = db.get("users").find({account: from}).value()
+        const toUser = db.get("users").find({account: to}).value()
+
+        if(!fromUser || !toUser)
+            return res.status(404).json({error: "User not found"})
+        if(Number(fromUser.balance) < Number(amount))
+            return res.status(403).json({error: "Insufficient balance"})
+
+        const fromUserNewBalance = String(Number(fromUser.balance) - Number(amount))
+        const toUserNewBalance = String(Number(toUser.balance) + Number(amount))
+
+        db.get('users').find({account: from}).assign({balance: fromUserNewBalance}).write()
+        db.get('users').find({account: to}).assign({balance: toUserNewBalance}).write()
+
+        res.status(200).json({message: "Fund transfer complete"})
+
+
+    }catch(error){
+        console.log("Failed to transfer funds", error)
+        res.status(500).json({error: 'Internal server error'})
+    }
+})
 
 server.use(router)
 server.listen(port, ()=>{

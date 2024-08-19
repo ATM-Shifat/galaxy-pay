@@ -32,7 +32,7 @@ defineProps({
                     {{subtitle}}
                 </p>
             </div>
-            <RouterLink class="button" to="/accounts/signup">
+            <RouterLink class="hero-button" to="/accounts/signup">
                 Sign Up 
             </RouterLink>
         </div>
@@ -104,7 +104,7 @@ img{
 }
 
 
-.button{
+.hero-button{
   background-color: #ffffff;
   color: var(--secondary-color);
   padding: .5rem 1rem;
@@ -114,7 +114,7 @@ img{
   transition: background-color 0.3s ease;
 }
 
-.button:hover{
+.hero-button:hover{
   background-color: var(--secondary-color);
   border:1px white solid;
   color: white;
