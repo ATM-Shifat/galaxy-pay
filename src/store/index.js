@@ -23,7 +23,7 @@ export const galaxyStore = defineStore('store', {
           name: form.name,
           email: form.email,
           phone: form.phone,
-          password: form.password,
+          sentPassword: form.password,
         })
 
         return response
@@ -33,7 +33,7 @@ export const galaxyStore = defineStore('store', {
 
         const response = await axios.post('/api/login', {
           email: form.email,
-          password: form.password
+          sentPassword: form.password
         })
 
         if(response.data.token && response.data.user){

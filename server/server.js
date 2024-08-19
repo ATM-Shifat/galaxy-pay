@@ -45,7 +45,7 @@ server.use((req,res, next) => {
 
 server.post('/signup', (req, res) =>{
     try{
-        const { name, email, phone, password} = req.body
+        const  { name, email, phone, sentPassword} = req.body
 
         const db = router.db
         const user = db.get("users").find({email}).value()
@@ -54,21 +54,23 @@ server.post('/signup', (req, res) =>{
              res.status(403).json({error: "Email already exists"})
         else{
             const id = generateId()
-            const hashedPassword = hashPassword(password)
+
+            const password = hashPassword(password)
+
             const account = generateAccount({
                 email: email,
-                password: hashedPassword,
+                password: password,
                 name: name,
                 phone: phone
             })
 
             const transactions = []
-            const balance = 0
+            const balance = "0"
 
             db.get("users").push({
                 id, 
                 email, 
-                hashedPassword, 
+                password, 
                 name, 
                 account, 
                 balance, 
@@ -87,10 +89,12 @@ server.post('/signup', (req, res) =>{
 
 server.post('/login', (req, res) => {
     try{
-        const {email, password} = req.body
-        const hashedPassword = hashPassword(password)
+        const {email, sentPassword} = req.body
+
+        const password =  hashPassword(sentPassword)
+        
         const db = router.db
-        const user = db.get("users").find({email, hashedPassword}).value()
+        const user = db.get("users").find({email, password}).value()
 
         if(user){
             const token = jwt.sign({
