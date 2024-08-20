@@ -6,7 +6,8 @@ import {RouterLink} from "vue-router"
     <h1>404</h1>
     <h1>NotFound</h1>
     <p>Go back to home page</p>
-    <RouterLink to="/" class="">
+    <RouterLink to="/">
         Home
     </RouterLink>
 </template>
+

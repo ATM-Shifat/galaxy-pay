@@ -12,12 +12,14 @@ const router = createRouter({
     {
       path: '/accounts/signup',
       name: 'signup',
-      component: () => import('@/views/SignupView.vue')
+      component: () => import('@/views/SignupView.vue'),
+      meta: { guest: true }
     },
     {
       path: '/accounts/login',
       name: 'login',
-      component: () => import('@/views/LoginView.vue')
+      component: () => import('@/views/LoginView.vue'),
+      meta: { guest: true }
     },
     {
       path: '/accounts/transfer',
@@ -33,8 +35,10 @@ const router = createRouter({
     },
     {
       path: "/:catchAll(.*)",
-      name:"notFound",
-      component: () => import('@/views/NotFoundView.vue')
+      meta: { requiresAuth: true },
+      beforeEnter: (to, from, next) => {
+        next('/')
+      }
     }
   ]
 })
@@ -50,5 +54,24 @@ router.beforeEach((to, from, next) => {
     next()
 
 })
+
+
+router.beforeEach((to, from, next) => {
+  const userStore = galaxyStore()
+
+  if(to.meta.guest && userStore.isAuthenticated){
+    next('/')
+    return 
+  }else{
+    next()
+    return 
+  }
+    
+
+})
+
+
+
+
 
 export default router

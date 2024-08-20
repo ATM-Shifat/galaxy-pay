@@ -1,23 +1,12 @@
 <script setup>
 
-import {computed, onMounted, ref } from 'vue'
-
-import { galaxyStore } from '@/store';
 import { isoToUnixTime } from '@/utilities/utilities';
-
-const userStore = galaxyStore()
 
 defineProps({
   transaction : {
     type: Object,
     required: true,
   }
-})
-
-
-
-onMounted(async () =>{
-  await userStore.getTransactions()
 })
 
 </script>
