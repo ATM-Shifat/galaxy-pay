@@ -197,6 +197,28 @@ server.post('/transfer-funds', (req, res) => {
     }
 })
 
+
+server.get('/get-transactions', (req, res) =>{
+    try{
+        const {account} = req.query
+
+        const db = router.db
+
+        const user = db.get("users").find({account}).value()
+
+        if(user){
+            res.status(200).json({
+                transactions: user.transactions
+            })
+        }else{
+            res.status(404).json({error: 'User not found!'})
+        }
+    }catch(error){
+        console.error('Error:', error)
+        res.status(500).json({error: 'Internal server error'})
+    }
+})
+
 server.use(router)
 server.listen(port, ()=>{
     console.log(`Server running at http://localhost:${port}`)

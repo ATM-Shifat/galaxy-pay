@@ -6,12 +6,15 @@ import { jwtDecode } from 'jwt-decode'
 export const galaxyStore = defineStore('store', {
   state : () => ({
     userAccount: null,
+    transactions: null,
     token: null,
     role: null
   }),
   getters: {
     isAuthenticated: (state) => !!state.userAccount,
-    isAdmin: (state) => state.role === 'admin'
+    isAdmin: (state) => state.role === 'admin',
+    stateUserAccount: (state) => state.userAccount,
+    stateTransactions: (state) => state.transactions
   },
   actions: {
     async signup(form){
@@ -47,6 +50,7 @@ export const galaxyStore = defineStore('store', {
       this.userAccount = null
       this.token = null
       this.role = null
+      this.transactions =  null
     },
     async getBalance() {
       const response = await axios.get('/api/get-balance', {
@@ -64,6 +68,17 @@ export const galaxyStore = defineStore('store', {
         },{
         headers: {"authorization": this.token}
       })
+
+
+      return response
+    },
+    async getTransactions(){
+      const response = await axios.get('/api/get-transactions', {
+        params: {account: this.userAccount},
+        headers: {"authorization": this.token}
+      })
+
+      this.transactions = response.data.transactions
 
 
       return response

@@ -16,9 +16,17 @@
       "password": "b2fe8b46929bfa4c65fee9d5d43a2423799b18e360782e9abc27bd420877243e",
       "name": "Lani Booth",
       "account": "70464206645",
-      "balance": "500",
+      "balance": "600",
       "phone": "+1 (517) 373-4281",
-      "transactions": []
+      "transactions": [
+        {
+          "id": "66c4457c",
+          "amount": "100",
+          "from": "155482922825",
+          "to": "70464206645",
+          "timestamp": "2024-08-20T07:27:55.683Z"
+        }
+      ]
     },
     {
       "id": "66c335fb",
@@ -44,9 +52,16 @@
       "password": "b2fe8b46929bfa4c65fee9d5d43a2423799b18e360782e9abc27bd420877243e",
       "name": "Pearl Myers",
       "account": "155482922825",
-      "balance": "480",
+      "balance": "380",
       "phone": "+1 (156) 135-5281",
       "transactions": [
+        {
+          "id": "66c4457c",
+          "amount": "100",
+          "from": "155482922825",
+          "to": "70464206645",
+          "timestamp": "2024-08-20T07:27:55.683Z"
+        },
         {
           "id": "66c337da",
           "amount": "20",

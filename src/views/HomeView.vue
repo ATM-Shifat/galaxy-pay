@@ -4,7 +4,7 @@ import {computed } from 'vue'
 
 import Hero from "@/components/Hero.vue"
 import { galaxyStore} from "@/store"
-import Transaction from "@/components/Transaction.vue";
+import Transactions from "@/components/Transactions.vue";
 
 const userStore = galaxyStore()
 
@@ -16,5 +16,5 @@ const userLoggedIn = computed(() => userStore.isAuthenticated)
 
 <template>
   <Hero v-if="!userLoggedIn"/>
-  <Transaction v-else/>
+  <Transactions v-else/>
 </template>
