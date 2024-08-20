@@ -1,6 +1,13 @@
 <script setup>
 
-import { isoToUnixTime } from '@/utilities/utilities';
+import { computed } from 'vue'
+import { isoToUnixTime } from '@/utilities/utilities'
+
+import { galaxyStore } from '@/store'
+
+const userStore =  galaxyStore()
+
+const myAccount = computed(() => userStore.stateUser.account)
 
 defineProps({
   transaction : {
@@ -19,10 +26,10 @@ defineProps({
             <span class="number">{{ transaction.id }}</span>
         </div>
         <div class="transaction-item">
-          Sender: <span class="number"> {{ transaction.from}}</span>
+          Sender: <span class="number"> {{ transaction.from === myAccount ? "Self" : transaction.from }}</span>
         </div>
         <div class="transaction-item">
-          Receiver: <span class="number"> {{ transaction.to}}</span>
+          Receiver: <span class="number"> {{ transaction.to === myAccount ? "Self" : transaction.to }}</span>
         </div>
         <div class="transaction-item">
           Amount:

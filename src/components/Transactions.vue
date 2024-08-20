@@ -5,19 +5,18 @@ import Transaction from '@/components/Transaction.vue'
 
 const userStore = galaxyStore()
 
-const transactions = computed(() => userStore.stateTransactions)
+const transactions = computed(() => userStore.stateUser.transactions)
 
 
-onMounted(async() => {
-  await userStore.getTransactions()
+onMounted(async () => {
+  await userStore.getProfile()
 })
-
 
 </script>
 
 <template>
     <div class="transactions-container" >
-      <div v-if="transactions">
+      <div v-if="transactions.length">
         <Transaction v-for="transaction in transactions" :key="transaction.id" :transaction="transaction"/>
       </div>
       <div class="failed-text" v-else>
@@ -32,7 +31,7 @@ onMounted(async() => {
     display: flex;
     justify-content: center;
     max-width: 68vw;
-    margin: 10px auto;
+    margin: 50px auto;
 }
 
 

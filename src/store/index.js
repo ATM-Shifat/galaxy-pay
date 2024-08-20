@@ -6,17 +6,13 @@ import { jwtDecode } from 'jwt-decode'
 export const galaxyStore = defineStore('store', {
   state : () => ({
     user: null,
-    userAccount: null,
-    transactions: null,
     token: null,
     role: null
   }),
   getters: {
-    isAuthenticated: (state) => !!state.userAccount,
+    isAuthenticated: (state) => !!state.user,
     stateUser: (state) => state.user,
-    isAdmin: (state) => state.role === 'admin',
-    stateUserAccount: (state) => state.userAccount,
-    stateTransactions: (state) => state.transactions
+    isAdmin: (state) => state.role === 'admin'
   },
   actions: {
     async signup(form){
@@ -52,22 +48,20 @@ export const galaxyStore = defineStore('store', {
     },
     logOut(){
       this.user = null
-      this.userAccount = null
       this.token = null
       this.role = null
-      this.transactions =  null
     },
-    async getBalance() {
-      const response = await axios.get('/api/get-balance', {
-        params: {account: this.userAccount},
-        headers: {"authorization": this.token}
-      })
+    // async getBalance() {
+    //   const response = await axios.get('/api/get-balance', {
+    //     params: {account: this.userAccount},
+    //     headers: {"authorization": this.token}
+    //   })
 
-      return response
-    },
+    //   return response
+    // },
     async transferFunds(form){
       const response =  await axios.post('/api/transfer-funds',
-        { from: this.userAccount,
+        { from: this.user.account,
           to: form.receiver,
           amount: form.amount
         },{
@@ -77,13 +71,23 @@ export const galaxyStore = defineStore('store', {
 
       return response
     },
-    async getTransactions(){
-      const response = await axios.get('/api/get-transactions', {
-        params: {account: this.userAccount},
+    // async getTransactions(){
+    //   const response = await axios.get('/api/get-transactions', {
+    //     params: {account: this.userAccount},
+    //     headers: {"authorization": this.token}
+    //   })
+
+    //   this.transactions = response.data.transactions
+      
+    //   return response
+    // },
+    async getProfile(){
+      const response = await axios.get('/api/get-profile', {
+        params: {account: this.user.account},
         headers: {"authorization": this.token}
       })
 
-      this.transactions = response.data.transactions
+      this.user = response.data.user
       
       return response
     }

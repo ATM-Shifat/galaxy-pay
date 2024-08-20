@@ -124,21 +124,21 @@ server.post('/log-in', (req, res) => {
 })
 
 
-server.get('/get-balance', (req, res) => {
-    try{
-        const {account} = req.query
-        const db = router.db
-        const user = db.get("users").find({account}).value()
+// server.get('/get-balance', (req, res) => {
+//     try{
+//         const {account} = req.query
+//         const db = router.db
+//         const user = db.get("users").find({account}).value()
 
-        if(user)
-            res.status(200).json({balance: user.balance})
-        else
-            res.status(404).json({error: 'User not found!'})
-    }catch(error){
-        console.error('Error:', error)
-        res.status(500).json({error: 'Internal server error'})
-    }
-})
+//         if(user)
+//             res.status(200).json({balance: user.balance})
+//         else
+//             res.status(404).json({error: 'User not found!'})
+//     }catch(error){
+//         console.error('Error:', error)
+//         res.status(500).json({error: 'Internal server error'})
+//     }
+// })
 
 server.post('/transfer-funds', (req, res) => {
     try{
@@ -199,26 +199,26 @@ server.post('/transfer-funds', (req, res) => {
 })
 
 
-server.get('/get-transactions', (req, res) =>{
-    try{
-        const {account} = req.query
+// server.get('/get-transactions', (req, res) =>{
+//     try{
+//         const {account} = req.query
 
-        const db = router.db
+//         const db = router.db
 
-        const user = db.get("users").find({account}).value()
+//         const user = db.get("users").find({account}).value()
 
-        if(user){
-            res.status(200).json({
-                transactions: user.transactions
-            })
-        }else{
-            res.status(404).json({error: 'User not found!'})
-        }
-    }catch(error){
-        console.error('Error:', error)
-        res.status(500).json({error: 'Internal server error'})
-    }
-})
+//         if(user){
+//             res.status(200).json({
+//                 transactions: user.transactions
+//             })
+//         }else{
+//             res.status(404).json({error: 'User not found!'})
+//         }
+//     }catch(error){
+//         console.error('Error:', error)
+//         res.status(500).json({error: 'Internal server error'})
+//     }
+// })
 
 server.get('/get-profile', (req, res) => {
     try{

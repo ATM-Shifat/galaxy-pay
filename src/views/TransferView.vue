@@ -9,25 +9,12 @@ import { galaxyStore } from '@/store';
 const toast = useToast()
 const userStore = galaxyStore()
 
-const balance = ref(0)
+const balance = computed(()=> userStore.stateUser.balance)
 
 const form = reactive({
     receiver: '',
     amount: ''
 })
-
-const fetchBalance = async () => {
-    try{
-        const response = await userStore.getBalance()
-
-        if(response.status === 200 || response.status === 304){
-            balance.value =  response.data.balance
-        }
-    }catch(error){
-        console.error("Failed to get balance ",error)
-        toast.error("Failed to get balance!")
-    }
-}
 
 const submit = async() => {
 
@@ -46,7 +33,7 @@ const submit = async() => {
         })
 
         if(response.status === 200){
-            await fetchBalance()
+            await userStore.getProfile()
             toast.success(response.data.message)
         }
             
@@ -59,7 +46,7 @@ const submit = async() => {
 
 
 onMounted(async () => {
-    await fetchBalance()
+    await userStore.getProfile()
 })
 
 </script>

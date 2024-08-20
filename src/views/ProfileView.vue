@@ -7,10 +7,10 @@ import Transaction from '@/components/Transaction.vue';
 const userStore = galaxyStore()
 
 const user = computed(() => userStore.stateUser)
-const transactions = computed(() => userStore.stateTransactions)
+const transactions = computed(() => userStore.stateUser.transactions)
 
 onMounted(async()=>{
-    await userStore.getTransactions()
+    await userStore.getProfile()
 })
 
 </script>
@@ -63,7 +63,7 @@ onMounted(async()=>{
 }
 
 .transactions-container {
-    max-width: 60vw; /* Ensure content inside is left-aligned */
+    max-width: 70vw; /* Ensure content inside is left-aligned */
 }
 
 
