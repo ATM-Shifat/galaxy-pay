@@ -34,9 +34,23 @@
       "password": "b2fe8b46929bfa4c65fee9d5d43a2423799b18e360782e9abc27bd420877243e",
       "name": "Kaitlin Reeves",
       "account": "713622142714",
-      "balance": "520",
+      "balance": "541",
       "phone": "+1 (379) 138-1803",
       "transactions": [
+        {
+          "id": "66c4858d",
+          "amount": "1",
+          "from": "155482922825",
+          "to": "713622142714",
+          "timestamp": "2024-08-20T12:01:17.206Z"
+        },
+        {
+          "id": "66c4853a",
+          "amount": "20",
+          "from": "155482922825",
+          "to": "713622142714",
+          "timestamp": "2024-08-20T11:59:54.223Z"
+        },
         {
           "id": "66c337da",
           "amount": "20",
@@ -52,9 +66,23 @@
       "password": "b2fe8b46929bfa4c65fee9d5d43a2423799b18e360782e9abc27bd420877243e",
       "name": "Pearl Myers",
       "account": "155482922825",
-      "balance": "380",
+      "balance": "359",
       "phone": "+1 (156) 135-5281",
       "transactions": [
+        {
+          "id": "66c4858d",
+          "amount": "1",
+          "from": "155482922825",
+          "to": "713622142714",
+          "timestamp": "2024-08-20T12:01:17.206Z"
+        },
+        {
+          "id": "66c4853a",
+          "amount": "20",
+          "from": "155482922825",
+          "to": "713622142714",
+          "timestamp": "2024-08-20T11:59:54.223Z"
+        },
         {
           "id": "66c4457c",
           "amount": "100",
@@ -70,6 +98,36 @@
           "timestamp": "2024-08-19T12:17:29.961Z"
         }
       ]
+    },
+    {
+      "id": "66c476c7",
+      "email": "syfukytu@mailinator.com",
+      "password": "b2fe8b46929bfa4c65fee9d5d43a2423799b18e360782e9abc27bd420877243e",
+      "name": "Nash Estes",
+      "account": "510447031973",
+      "balance": "500",
+      "phone": "+1 (352) 435-7889",
+      "transactions": []
+    },
+    {
+      "id": "66c476f1",
+      "email": "lavyfugipu@mailinator.com",
+      "password": "b2fe8b46929bfa4c65fee9d5d43a2423799b18e360782e9abc27bd420877243e",
+      "name": "Rajah Wells",
+      "account": "793984238630",
+      "balance": "500",
+      "phone": "+1 (771) 814-3423",
+      "transactions": []
+    },
+    {
+      "id": "66c47746",
+      "email": "suno@mailinator.com",
+      "password": "b2fe8b46929bfa4c65fee9d5d43a2423799b18e360782e9abc27bd420877243e",
+      "name": "Kasper Mclean",
+      "account": "689781445643",
+      "balance": "500",
+      "phone": "+1 (326) 671-5725",
+      "transactions": []
     }
   ],
   "Admin": {

@@ -11,7 +11,7 @@ const toast = useToast()
 
 const userLoggedIn = computed(() => userStore.isAuthenticated)
 
-const userAccount = computed( () => userStore.stateUserAccount)
+const user = computed( () => userStore.stateUser)
 
 const logOut = () => {
     userStore.logOut()
@@ -39,7 +39,7 @@ const isActive = (path) => {
 
         <span class="items">
             <span v-if="userLoggedIn">
-                <RouterLink class="nav-item" :class="{active : isActive('/accounts/profile')}" to="/accounts/profile">{{userAccount}}</RouterLink>
+                <RouterLink class="nav-item" :class="{active : isActive('/accounts/profile')}" to="/accounts/profile">{{user.name}}</RouterLink>
                 <RouterLink class="nav-item" to="/" @click="logOut">Logout</RouterLink>
             </span>
             <span v-else>

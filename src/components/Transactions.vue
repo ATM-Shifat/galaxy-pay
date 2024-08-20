@@ -27,11 +27,12 @@ onMounted(async() => {
 </template>
 
 <style scoped>
+
 .transactions-container{
     display: flex;
     justify-content: center;
-    max-width: 70vw;
-    margin: 20px auto;
+    max-width: 68vw;
+    margin: 10px auto;
 }
 
 

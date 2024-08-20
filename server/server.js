@@ -106,10 +106,11 @@ server.post('/log-in', (req, res) => {
                 email: user.email,
                 role: 'user'
             },secrete)
-
+            const {id, password, ...userInfo} = user
             res.status(200).json({
                 token: token,
                 account: user.account,
+                user: userInfo,
                 message: "Logged in successfully"
             })
         }else{
@@ -213,6 +214,30 @@ server.get('/get-transactions', (req, res) =>{
         }else{
             res.status(404).json({error: 'User not found!'})
         }
+    }catch(error){
+        console.error('Error:', error)
+        res.status(500).json({error: 'Internal server error'})
+    }
+})
+
+server.get('/get-profile', (req, res) => {
+    try{
+        const {account} = req.query
+
+        const db = router.db
+
+        const user = db.get('users').find({account: account}).value()
+
+        if(user){
+            const {id, password, ...userInfo} = user
+            res.status(200).json({
+                user: userInfo
+            })
+        }else
+            res.status(404).json({
+                error: 'User not found!'
+            })
+
     }catch(error){
         console.error('Error:', error)
         res.status(500).json({error: 'Internal server error'})

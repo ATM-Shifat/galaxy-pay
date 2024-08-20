@@ -5,6 +5,7 @@ import { jwtDecode } from 'jwt-decode'
 
 export const galaxyStore = defineStore('store', {
   state : () => ({
+    user: null,
     userAccount: null,
     transactions: null,
     token: null,
@@ -12,6 +13,7 @@ export const galaxyStore = defineStore('store', {
   }),
   getters: {
     isAuthenticated: (state) => !!state.userAccount,
+    stateUser: (state) => state.user,
     isAdmin: (state) => state.role === 'admin',
     stateUserAccount: (state) => state.userAccount,
     stateTransactions: (state) => state.transactions
@@ -37,8 +39,10 @@ export const galaxyStore = defineStore('store', {
         })
 
         if(response.data.token && response.data.account){
+          
           this.token = response.data.token
           this.userAccount = response.data.account
+          this.user = response.data.user
 
           const decodedToken = jwtDecode(this.token)
           this.role = decodedToken.role
@@ -47,6 +51,7 @@ export const galaxyStore = defineStore('store', {
         return response
     },
     logOut(){
+      this.user = null
       this.userAccount = null
       this.token = null
       this.role = null
@@ -79,8 +84,7 @@ export const galaxyStore = defineStore('store', {
       })
 
       this.transactions = response.data.transactions
-
-
+      
       return response
     }
 

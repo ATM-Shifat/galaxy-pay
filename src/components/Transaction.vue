@@ -15,7 +15,7 @@ defineProps({
     <div v-if="transaction">
       <div class="transaction-container">
         <div class="transaction-item">
-            Txid:
+            Trnxid:
             <span class="number">{{ transaction.id }}</span>
         </div>
         <div class="transaction-item">
@@ -26,7 +26,7 @@ defineProps({
         </div>
         <div class="transaction-item">
           Amount:
-          <span class="number">{{transaction.amount}}</span>$
+          <span class="number">{{transaction.amount}}$</span>
         </div>
         <div class="transaction-item">
           TimeStamp: 
@@ -54,12 +54,17 @@ defineProps({
 
 }
 
+.transaction-container:hover{
+  box-shadow: 0 0 10px gray;
+  transition:  0.3s ease; 
+}
+
 .transaction-item{
   margin: auto 10px;
 }
 
 .number{
-  color: var(--secondary-color)
+  color: var(--secondary-color);
 }
 
 
