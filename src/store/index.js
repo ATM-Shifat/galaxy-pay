@@ -12,7 +12,6 @@ export const galaxyStore = defineStore('store', {
   getters: {
     isAuthenticated: (state) => !!state.user,
     stateUser: (state) => state.user,
-    isAdmin: (state) => state.role === 'admin'
   },
   actions: {
     async signup(form){
@@ -34,10 +33,9 @@ export const galaxyStore = defineStore('store', {
           sentPassword: form.password
         })
 
-        if(response.data.token && response.data.account){
+        if(response.data.token && response.data.user){
           
           this.token = response.data.token
-          this.userAccount = response.data.account
           this.user = response.data.user
 
           const decodedToken = jwtDecode(this.token)
@@ -51,14 +49,6 @@ export const galaxyStore = defineStore('store', {
       this.token = null
       this.role = null
     },
-    // async getBalance() {
-    //   const response = await axios.get('/api/get-balance', {
-    //     params: {account: this.userAccount},
-    //     headers: {"authorization": this.token}
-    //   })
-
-    //   return response
-    // },
     async transferFunds(form){
       const response =  await axios.post('/api/transfer-funds',
         { from: this.user.account,
@@ -67,20 +57,9 @@ export const galaxyStore = defineStore('store', {
         },{
         headers: {"authorization": this.token}
       })
-
-
+      
       return response
     },
-    // async getTransactions(){
-    //   const response = await axios.get('/api/get-transactions', {
-    //     params: {account: this.userAccount},
-    //     headers: {"authorization": this.token}
-    //   })
-
-    //   this.transactions = response.data.transactions
-      
-    //   return response
-    // },
     async getProfile(){
       const response = await axios.get('/api/get-profile', {
         params: {account: this.user.account},
@@ -91,7 +70,6 @@ export const galaxyStore = defineStore('store', {
       
       return response
     }
-
   },
 
   persist: true

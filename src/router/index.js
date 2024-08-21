@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { galaxyStore} from '@/store'
+import { useAdminStore } from '@/admin/store'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -34,11 +35,22 @@ const router = createRouter({
       meta: { requiresAuth: true }
     },
     {
+      path: "/admin/",
+      name: "admin-home",
+      component: () => import("@/admin/views/AdminHomeView.vue"),
+      meta: { requiresAdmin: true }
+    },
+    {
+      path: "/admin/login",
+      name: "admin-login",
+      component: () => import("@/admin/views/AdminLoginView.vue"),
+      meta: { adminGuest: true }
+    },
+    {
       path: "/:catchAll(.*)",
-      meta: { requiresAuth: true },
-      beforeEnter: (to, from, next) => {
-        next('/')
-      }
+      name: "not-found",
+      component: () => import('@/views/NotFoundView.vue'),
+      meta: { requiresAuth: true }
     }
   ]
 })
@@ -66,11 +78,21 @@ router.beforeEach((to, from, next) => {
     next()
     return 
   }
-    
-
 })
 
+router.beforeEach((to, from, next) => {
+  const adminStore = useAdminStore()
 
+  if(to.meta.requiresAdmin &&!adminStore.isAdmin){
+    next('/admin/login')
+    return 
+  }else if( to.meta.adminGuest && adminStore.isAdmin){
+    next('/admin/')
+    return
+  }
+  else
+    next()
+})
 
 
 

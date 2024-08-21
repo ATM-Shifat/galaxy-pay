@@ -25,7 +25,7 @@ onMounted(async()=>{
                 Account No: <span class="profile-info"> {{ user.account }}</span>
             </div>
             <div class="profile-item">
-            Balance: <span class="profile-info"> {{ user.balance }}$</span>
+                Balance: <span class="profile-info"> {{ user.balance }}$</span>
             </div>
             <div class="profile-item">
                 Phone: <span class="profile-info"> {{ user.phone }} </span>
