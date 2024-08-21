@@ -57,7 +57,7 @@ export const galaxyStore = defineStore('store', {
         },{
         headers: {"authorization": this.token}
       })
-      
+
       return response
     },
     async getProfile(){

@@ -47,7 +47,7 @@ const submit = async() =>{
 
         const response = await userStore.signup({
             name: form.name,
-            email: form.email,
+            email: form.email.toLowerCase(),
             phone: form.phone,
             password: form.password,
         })

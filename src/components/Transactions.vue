@@ -2,14 +2,22 @@
 import { reactive, computed, onMounted} from 'vue'
 import { galaxyStore } from '@/store'
 import Transaction from '@/components/Transaction.vue'
+import { useRouter } from 'vue-router'
 
 const userStore = galaxyStore()
+const router = useRouter()
 
 const transactions = computed(() => userStore.stateUser.transactions)
 
 
 onMounted(async () => {
-  await userStore.getProfile()
+  try{
+        await userStore.getProfile()
+    }catch(error){
+        console.error('Failed to fetch user profile', error)
+        userStore.logOut()
+        router.push('/')
+    }
 })
 
 </script>

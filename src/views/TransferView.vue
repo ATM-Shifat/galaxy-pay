@@ -4,10 +4,12 @@ import {computed, onMounted, reactive, ref} from 'vue'
 import {useToast} from 'vue-toastification'
 
 import { galaxyStore } from '@/store';
+import { useRouter } from 'vue-router';
 
 
 const toast = useToast()
 const userStore = galaxyStore()
+const router = useRouter()
 
 const balance = computed(()=> userStore.stateUser.balance)
 
@@ -46,7 +48,13 @@ const submit = async() => {
 
 
 onMounted(async () => {
-    await userStore.getProfile()
+    try{
+        await userStore.getProfile()
+    }catch(error){
+        console.error('Failed to fetch user profile', error)
+        userStore.logOut()
+        router.push('/')
+    }
 })
 
 </script>

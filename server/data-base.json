@@ -70,6 +70,16 @@
           "timestamp": "2024-08-21T06:28:50.562Z"
         }
       ]
+    },
+    {
+      "id": "66c5bc5d",
+      "email": "zusuby@mailinator.com",
+      "password": "b2fe8b46929bfa4c65fee9d5d43a2423799b18e360782e9abc27bd420877243e",
+      "name": "Justine Gomez",
+      "account": "63097563305",
+      "balance": 500,
+      "phone": "+1 (734) 715-1989",
+      "transactions": []
     }
   ],
   "admin": {

@@ -27,7 +27,7 @@ const submit = async () =>{
 
     try{
         const response = await userStore.login({
-            email: form.email,
+            email: form.email.toLowerCase(),
             password: form.password,
         })
 
