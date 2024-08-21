@@ -44,13 +44,13 @@ onMounted(async()=>{
 .profile-container{
     padding: 5px 100px;
     margin: 20px;
-    align-items: start
+    align-items: start;
 }
 .profile-info-container{
-    margin: 0px;
+    margin: 0px auto;
     margin-top: 50px;
     margin-bottom: 10px;
-    width: 50%;
+    width: 68vw;
     border: 1px  solid #ddd;
     box-shadow: 0px 0px 5px gray;
     border-radius: 15px;
@@ -63,7 +63,8 @@ onMounted(async()=>{
 }
 
 .transactions-container {
-    max-width: 70vw; /* Ensure content inside is left-aligned */
+    margin: 0px auto;
+    max-width: 72vw; /* Ensure content inside is left-aligned */
 }
 
 

@@ -176,14 +176,14 @@ server.post('/transfer-funds', (req, res) => {
 
         db.get('users')
         .find({account: from})
-        .assign({balance: String(Number(fromUser.balance) - Number(amount))})
+        .assign({balance: String(Number(fromUser.balance).toFixed(2) - Number(amount).toFixed(2))})
         .get("transactions")
         .unshift(transactionFrom)
         .write()
 
         db.get('users')
         .find({account: to})
-        .assign({balance: String(Number(toUser.balance) + Number(amount))})
+        .assign({balance: String(Number(toUser.balance).toFixed(2) + Number(amount).toFixed(2))})
         .get("transactions")
         .unshift(transactionTo)
         .write()

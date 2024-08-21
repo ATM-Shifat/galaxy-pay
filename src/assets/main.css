@@ -78,6 +78,7 @@ a {
 }
 .input-container input:hover{
   box-shadow: 0px 1px 5px #999898;
+  transition: 0.3 ease;
 }
 
 .button-container{

@@ -252,9 +252,16 @@
       "password": "b2fe8b46929bfa4c65fee9d5d43a2423799b18e360782e9abc27bd420877243e",
       "name": "Nash Estes",
       "account": "510447031973",
-      "balance": "511",
+      "balance": "511.001.40",
       "phone": "+1 (352) 435-7889",
       "transactions": [
+        {
+          "id": "66c575d1",
+          "amount": "1.4",
+          "from": "922491648980",
+          "to": "510447031973",
+          "timestamp": "2024-08-21T05:06:24.673Z"
+        },
         {
           "id": "66c4e44f",
           "amount": "1",
@@ -330,9 +337,16 @@
       "password": "b2fe8b46929bfa4c65fee9d5d43a2423799b18e360782e9abc27bd420877243e",
       "name": "Dillon Black",
       "account": "922491648980",
-      "balance": "468.9",
+      "balance": "467.5",
       "phone": "+1 (563) 286-6828",
       "transactions": [
+        {
+          "id": "66c575d1",
+          "amount": "1.4",
+          "from": "922491648980",
+          "to": "510447031973",
+          "timestamp": "2024-08-21T05:06:24.673Z"
+        },
         {
           "id": "66c4e56a",
           "amount": "10",
