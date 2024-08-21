@@ -1,6 +1,6 @@
 <script setup>
 
-import { computed, onMounted } from 'vue';
+import { computed, onMounted} from 'vue';
 import { useAdminStore } from '@/admin/store'
 
 import UserCard from '@/admin/components/UserCard.vue';
@@ -10,6 +10,7 @@ const adminStore = useAdminStore()
 
 const users = computed(() => adminStore.users)
 
+
 onMounted(async() => {
     await adminStore.adminGetUsers()
 })
@@ -18,7 +19,7 @@ onMounted(async() => {
 <template>
 
     <div class="users-container">
-        <UserCard v-for="user in users" :key="user.id" :user="user"/>
+        <UserCard  v-for="user in users" :key="user.id" :user="user"/>
     </div>
 
 </template>

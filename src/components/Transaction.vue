@@ -4,10 +4,12 @@ import { computed } from 'vue'
 import { isoToUnixTime } from '@/utilities/utilities'
 
 import { galaxyStore } from '@/store'
+import { useRoute } from 'vue-router';
 
 const userStore =  galaxyStore()
+const route = useRoute()
 
-const myAccount = computed(() => userStore.stateUser.account)
+const myAccount = computed(() => route.path.includes('/admin') ? null : userStore.stateUser.account)
 
 defineProps({
   transaction : {
@@ -26,7 +28,9 @@ defineProps({
             <span class="number">{{ transaction.id }}</span>
         </div>
         <div class="transaction-item">
-          Sender: <span class="number"> {{ transaction.from === myAccount ? "Self" : transaction.from }}</span>
+          Sender: <span class="number"> 
+            {{ transaction.from === myAccount  ? "Self" : transaction.from }}
+          </span>
         </div>
         <div class="transaction-item">
           Receiver: <span class="number"> {{ transaction.to === myAccount ? "Self" : transaction.to }}</span>

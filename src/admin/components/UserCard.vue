@@ -1,8 +1,10 @@
 <script setup>
 
-import { defineProps, useAttrs } from 'vue';
+import { defineProps, ref } from 'vue';
 import { useToast } from 'vue-toastification';
 import { useAdminStore } from '../store';
+
+import Transaction from '@/components/Transaction.vue';
 
 const toast = useToast();
 const adminStore = useAdminStore();
@@ -14,6 +16,9 @@ defineProps({
     }
 })
 
+const toggle = ref(false)
+
+const toggler = () => toggle.value = !toggle.value
 
 const deleteUser = async(id) => {
     try{
@@ -37,7 +42,7 @@ const deleteUser = async(id) => {
 
 <template>
     <div>
-      <div class="user-container">
+      <div @click="toggler" class="user-container" >
         <div class="user-item">
             <p>Name:</p>
             <span class="number">{{ user.name }}</span>
@@ -68,6 +73,7 @@ const deleteUser = async(id) => {
             </button>
         </div>
       </div>
+      <Transaction class="transaction" v-if="toggle" v-for="transaction in user.transactions" :key="transaction.id"  :transaction="transaction"/>
     </div>
 </template>
 
@@ -113,6 +119,11 @@ const deleteUser = async(id) => {
 
 .delete-button:hover{
     color: var(--primary-color);
+}
+
+.transaction{
+    margin: 10px auto;
+    width: 70vw;
 }
 
 </style>
