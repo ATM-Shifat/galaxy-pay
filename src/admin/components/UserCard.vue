@@ -5,6 +5,7 @@ import { useToast } from 'vue-toastification';
 import { useAdminStore } from '../store';
 
 import Transaction from '@/components/Transaction.vue';
+import DeleteButton from "@/components/Icons/DeleteButton.vue";
 
 const toast = useToast();
 const adminStore = useAdminStore();
@@ -69,7 +70,7 @@ const deleteUser = async(id) => {
         </div>
         <div class="user-item">
             <button class="delete-button" @click="deleteUser(user.id)">
-                X
+                <DeleteButton/>
             </button>
         </div>
       </div>
@@ -110,7 +111,7 @@ const deleteUser = async(id) => {
 
 .delete-button{
     border: none;
-    color: var(--hover-color);
+    color: var(--primary-color);
     cursor: pointer;
     font-size: 1.5rem;
     font-weight: 700;
@@ -118,7 +119,7 @@ const deleteUser = async(id) => {
 }
 
 .delete-button:hover{
-    color: var(--primary-color);
+    color: var(--hover-color);
 }
 
 .transaction{
